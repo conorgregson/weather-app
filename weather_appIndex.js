@@ -1,12 +1,5 @@
 // WEATHER APP
 
-// preventDefault() 
-
-// {} = object destructuring
-
-// [] = array destructuring
-
-
 const weatherForm = document.querySelector(".weatherForm");
 const cityInput = document.querySelector(".cityInput");
 const unitSelect = document.querySelector(".unitSelect");
