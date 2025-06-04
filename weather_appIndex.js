@@ -10,32 +10,31 @@ weatherForm.addEventListener("submit", async event => {
     event.preventDefault();
     const city = cityInput.value;
     const units = unitSelect.value;
-    if(city){
-        try{
+    if (city) {
+        try {
             const weatherData = await getWeatherData(city, units);
             displayWeatherInfo(weatherData, units);
         }
-        catch(error){
+        catch (error) {
             console.error(error);
             displayError(error);
         }
-    }
-    else{
+    } else {
         displayError("Please enter a city");
     }
 });
 
-async function getWeatherData(city, units){
+async function getWeatherData(city, units) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
     const response = await fetch(apiUrl);
-    if(!response.ok){
+    if (!response.ok) {
         throw new Error("Could not fetch weather data");
     }
     return await response.json();
 }
 
-function displayWeatherInfo(data, units){
-    const {name: city, sys: {country}, main: {temp, humidity}, weather: [{description, icon, id}]} = data;
+function displayWeatherInfo(data, units) {
+    const {name: city, sys: {country}, main: {temp, humidity}, weather: [ {description, icon, id} ]} = data;
 
     console.log("Weather ID:", id); // For debugging random characters
 
@@ -70,7 +69,7 @@ function displayWeatherInfo(data, units){
     card.appendChild(weatherIcon);
 }
 
-function displayError(message){
+function displayError(message) {
     const errorDisplay = document.createElement("p");
     errorDisplay.textContent = message;
     errorDisplay.classList.add("errorDisplay");
